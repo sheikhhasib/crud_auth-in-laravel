@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Auth::routes();
-Route::get('/home','HomeController@index')->name('home');
+Route::get('/home','CrudController@index');
 
 Route::get('crud/insert','CrudController@crudinsert');
 Route::get('/','CrudController@index');
@@ -21,4 +21,8 @@ Route::post('crud/insertdata','CrudController@crudinsertdata');
 Route::get('customer/delete/{customer_id}','CrudController@customerdelete');
 Route::get('customer/edit/{customer_id}','CrudController@customeredit');
 Route::post('customer/update','CrudController@customerupdate');
+
+Route::get('customer/register','HomeController@customerregister');
+Route::post('customer/register/insert','HomeController@customerregisterinsert');
+Route::get('/customer/dashboard','CustomerController@customerdashboard');
 

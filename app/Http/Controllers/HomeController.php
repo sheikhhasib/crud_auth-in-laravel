@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -11,18 +13,24 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
 
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        return view('home');
+    public function customerregister(){
+        return view('customerregister');
+    }
+    public function customerregisterinsert(Request $request){
+        User::insert([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'role' => 2,
+            'created_at' => Carbon::now(),
+        ]);
+        return back();
     }
 }

@@ -11,6 +11,7 @@ class CrudController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('rolechecker');
     }
     public function index(){
         $customers = Customer::all();
@@ -55,4 +56,5 @@ class CrudController extends Controller
         ]);
         return back()->with('update','updated successfully');
     }
+
 }
